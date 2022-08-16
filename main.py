@@ -9,11 +9,6 @@ def hello_world():
     return "<h1>Hello, World!</h1>"
 
 
-@app.route("/lena")
-def lena():
-    return "<h1>I am Lena</h1>"
-
-
 @app.route("/json-example", methods=["POST"])
 def json_example():
     content = request.get_json(silent=True)
