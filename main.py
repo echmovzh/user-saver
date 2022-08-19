@@ -1,8 +1,10 @@
+from unicodedata import name
 from flask import Flask
 from flask import request
 
 from pymongo import MongoClient
 from pprint import pprint
+
 
 app = Flask(__name__)
 
@@ -26,6 +28,13 @@ def save_user():
     db = client.users
     result = db.users.insert_one(content)
     return f"User {result.inserted_id} is created"
+
+
+@app.route("/user", methods=["GET"])
+def get_user():
+    content = request.get_json(silent=True)
+    print(content["name"])
+    return content[name]
 
 
 if __name__ == "__main__":
